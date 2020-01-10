@@ -1,8 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { ITenant } from './interfaces/tenant.interface';
+import { Injectable, Inject } from '@nestjs/common';
+import { ITenantContext } from './core/interfaces/tenant-context.interface';
 
 @Injectable()
 export class AppService {
+  constructor(@Inject('TENANT') readonly tenant: ITenantContext) {
+    console.log(tenant);
+    // You can access tenant database here
+  }
+
+  /**
+   * Get the default message
+   *
+   * @returns {string}
+   * @memberof AppService
+   */
   getHello(): string {
     return 'Hello World!';
   }
@@ -10,11 +21,11 @@ export class AppService {
   /**
    * Get the subdomain details
    *
-   * @param {ITenant} tenant
+   * @param {ITenantContext} tenant
    * @returns
    * @memberof AppService
    */
-  getSubdomainDetails(subdomain: ITenant) {
+  getSubdomainDetails(subdomain: ITenantContext) {
     return `The domain that is referenced here is ${subdomain.id}`;
   }
 }

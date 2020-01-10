@@ -22,14 +22,23 @@
     "dependencies": {
         "@nestjs/common": "^6.0.0",
         "@nestjs/core": "^6.0.0",
+        "@nestjs/mongoose": "^6.1.2",
         "@nestjs/platform-express": "^6.0.0",
+        "@nestjs/swagger": "^3.1.0",
+        "class-transformer": "^0.2.0",
+        "class-validator": "^0.9.1",
+        "dotenv": "^8.2.0",
+        "dotenv-expand": "^5.1.0",
+        "mongoose": "^5.8.6",
         "reflect-metadata": "^0.1.12",
         "rimraf": "^2.6.2",
         "rxjs": "^6.3.3",
+        "swagger-ui-express": "^4.0.7",
         "wildcard-subdomains": "^1.1.0"
     },
     "devDependencies": {
         "@nestjs/testing": "^6.0.0",
+        "@types/dotenv": "^8.2.0",
         "@types/express": "^4.16.0",
         "@types/jest": "^23.3.13",
         "@types/node": "^10.12.18",

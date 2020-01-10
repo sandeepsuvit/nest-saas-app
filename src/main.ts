@@ -1,7 +1,14 @@
+import * as dotenv from 'dotenv';
+import dotenvExpand = require('dotenv-expand');
+
+// Enables use of variables in env files
+dotenvExpand(dotenv.config()); // Should always be at the top of base nest app imports
+
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 import wildCardSubdomain = require('wildcard-subdomains');
+import { swaggerSetup } from './swagger.setup';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +20,9 @@ async function bootstrap() {
     // These subdomains would be ignored
     whitelist: ['www', 'app'],
   }));
+
+  // Swagger configuration
+  swaggerSetup(app);
 
   await app.listen(3000);
 }
