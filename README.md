@@ -36,7 +36,7 @@ $ npm run test:cov
 
 ## Test the dynamic subdomain setup
 ```bash
-# Add your domain entried to your /etc/host file to test this setup in a local machine
+# Add your domain entry to your /etc/host file to test this setup in a local machine
 127.0.0.1	yourdomain.com www.yourdomain.com app.yourdomain.com google.yourdomain.com facebook.yourdomain.com
 
 # Navigate to any of these urls, would result in the default page
