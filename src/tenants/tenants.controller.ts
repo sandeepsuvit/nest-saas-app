@@ -13,8 +13,8 @@ export class TenantsController {
     @Post()
     @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
     @ApiResponse({ status: 403, description: 'Forbidden.'})
-    async create(@Body() createTenant: CreateTenantDto) {
-        return this.tenantService.create(createTenant);
+    async create(@Body() tenant: CreateTenantDto) {
+        return this.tenantService.create(tenant);
     }
 
     @Get()

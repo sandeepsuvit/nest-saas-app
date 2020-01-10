@@ -36,4 +36,15 @@ export class TenantsService {
     async findAll(): Promise<ITenant> {
         return await this.tenantModel.find({});
     }
+
+    /**
+     * Find details of a tenant by name
+     *
+     * @param {string} name
+     * @returns {Promise<ITenant>}
+     * @memberof TenantsService
+     */
+    async findByName(name: string): Promise<ITenant> {
+        return await this.tenantModel.findOne({ name });
+    }
 }

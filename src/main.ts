@@ -9,6 +9,7 @@ import { AppModule } from './app.module';
 
 import wildCardSubdomain = require('wildcard-subdomains');
 import { swaggerSetup } from './swagger.setup';
+import { swaggerTenantSetup } from './swagger-tenant.setup';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -23,6 +24,9 @@ async function bootstrap() {
 
   // Swagger configuration
   swaggerSetup(app);
+  
+  // Swagger configuration for tenants
+  swaggerTenantSetup(app);
 
   await app.listen(3000);
 }

@@ -4,7 +4,6 @@ import { ITenantContext } from './core/interfaces/tenant-context.interface';
 @Injectable()
 export class AppService {
   constructor(@Inject('TENANT') readonly tenant: ITenantContext) {
-    console.log(tenant);
     // You can access tenant database here
   }
 

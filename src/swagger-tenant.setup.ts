@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerCustomOptions, SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { TenantsModule } from './tenants/tenants.module';
+import { UsersModule } from './users/users.module';
 
 /**
  * Configuration for Swagger
@@ -8,7 +8,7 @@ import { TenantsModule } from './tenants/tenants.module';
  * @export
  * @param {INestApplication} app
  */
-export function swaggerSetup(app: INestApplication) {
+export function swaggerTenantSetup(app: INestApplication) {
     // Swagger configuration
     const options = new DocumentBuilder()
         .setTitle(process.env.API_DOC_TITLE)
@@ -16,17 +16,17 @@ export function swaggerSetup(app: INestApplication) {
         .setVersion(process.env.VERSION)
         .setBasePath('/')
         // Register all controller tags heres
-        .addTag('tenants', 'Tenant management endpoint')
+        .addTag('users', 'User management endpoint')
         .build();
 
     // Custom swagger options
     const customOptions: SwaggerCustomOptions = {
+        
         customSiteTitle: `${process.env.API_DOC_TITLE} Documentation`,
     };
 
     const document = SwaggerModule.createDocument(app, options, {
-        // Include only specified modules
-        include: [TenantsModule]
+        include: [UsersModule]
     });
     // Setup swagger endpoint
     SwaggerModule.setup('apidoc', app, document, customOptions);
