@@ -1,14 +1,18 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, Logger } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { IUser } from '../core/interfaces/user.interface';
+import { ITenantContext } from './../core/interfaces/tenant-context.interface';
 import { CreateUserDto } from './dtos/create-user.dto';
 
 @Injectable()
 export class UsersService {
-    
+
     constructor(
-        @Inject('USER_MODEL') private userModel: Model<IUser>
-    ) {}
+        @Inject('TENANT_CONTEXT') readonly tenantContext: ITenantContext,
+        @Inject('USER_MODEL') private userModel: Model<IUser>,
+    ) {
+        Logger.debug(`Current tenant: ${this.tenantContext.id}`);
+    }
 
     /**
      * Create a new user
@@ -26,7 +30,6 @@ export class UsersService {
             throw new HttpException(error, HttpStatus.BAD_REQUEST);
         }
     }
-
 
     /**
      * Get the list of all users

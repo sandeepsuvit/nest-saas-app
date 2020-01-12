@@ -1,20 +1,9 @@
-import { Module, Scope } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import { CoreModule } from '../core/core.module';
+import { TenantConnection } from './providers/tenant-connection';
+import { TenantConnectionFactory } from './providers/tenant-connection.factory';
 import { TenantsController } from './tenants.controller';
 import { TenantsService } from './tenants.service';
-import { CoreModule } from '../core/core.module';
-import { REQUEST } from '@nestjs/core';
-import { Request } from 'express';
-import { TenantConnectionProviders } from './providers/tenant-connection.providers';
-
-const connectionFactory = {
-  provide: 'TENANT',
-  scope: Scope.REQUEST,
-  inject: [REQUEST],
-  useFactory: (req: Request) => {
-    // console.log(req.headers.host.split(".")[0]);
-    return req.params;
-  },
-};
 
 @Module({
   imports: [
@@ -23,9 +12,11 @@ const connectionFactory = {
   controllers: [TenantsController],
   providers: [
     TenantsService,
-    connectionFactory,
-    ...TenantConnectionProviders
+    TenantConnection,
+    ...TenantConnectionFactory,
   ],
-  exports: ['TENANT', ...TenantConnectionProviders],
+  exports: [
+    ...TenantConnectionFactory,
+  ],
 })
 export class TenantsModule {}

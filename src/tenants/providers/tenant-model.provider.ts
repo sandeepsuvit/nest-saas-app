@@ -8,4 +8,4 @@ export const TenantModelProviders = [
         useFactory: (connection: Connection) => connection.model('User', UserSchema),
         inject: ['TENANT_CONNECTION'],
     },
-]
+];

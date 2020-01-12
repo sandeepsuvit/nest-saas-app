@@ -9,7 +9,7 @@ export class TenantsService {
     constructor(
         @InjectModel('Tenant') private readonly tenantModel: Model<ITenant>,
     ) {}
-    
+
     /**
      * Save tenant data
      *

@@ -1,11 +1,9 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ITenantContext } from './core/interfaces/tenant-context.interface';
 
 @Injectable()
 export class AppService {
-  constructor(@Inject('TENANT') readonly tenant: ITenantContext) {
-    // You can access tenant database here
-  }
+  constructor() {}
 
   /**
    * Get the default message
