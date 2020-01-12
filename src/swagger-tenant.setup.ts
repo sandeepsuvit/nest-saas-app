@@ -21,13 +21,12 @@ export function swaggerTenantSetup(app: INestApplication) {
 
     // Custom swagger options
     const customOptions: SwaggerCustomOptions = {
-        
         customSiteTitle: `${process.env.API_DOC_TITLE} Documentation`,
     };
 
     const document = SwaggerModule.createDocument(app, options, {
-        include: [UsersModule]
+        include: [UsersModule],
     });
     // Setup swagger endpoint
-    SwaggerModule.setup('apidoc', app, document, customOptions);
+    SwaggerModule.setup('/@tenant/:id/apidoc', app, document, customOptions);
 }

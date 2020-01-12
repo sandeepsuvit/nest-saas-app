@@ -9,7 +9,7 @@ export class UsersController {
     constructor(
         private userService: UsersService,
     ) {}
-    
+
     /**
      * Create new user
      *

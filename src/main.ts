@@ -24,7 +24,7 @@ async function bootstrap() {
 
   // Swagger configuration
   swaggerSetup(app);
-  
+
   // Swagger configuration for tenants
   swaggerTenantSetup(app);
 
