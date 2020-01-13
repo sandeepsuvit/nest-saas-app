@@ -28,5 +28,5 @@ export function swaggerTenantSetup(app: INestApplication) {
         include: [UsersModule],
     });
     // Setup swagger endpoint
-    SwaggerModule.setup('/@tenant/:id/apidoc', app, document, customOptions);
+    SwaggerModule.setup('apidoc', app, document, customOptions);
 }

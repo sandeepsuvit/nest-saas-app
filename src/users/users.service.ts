@@ -1,8 +1,9 @@
 import { HttpException, HttpStatus, Inject, Injectable, Logger } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, Connection } from 'mongoose';
 import { IUser } from '../core/interfaces/user.interface';
 import { ITenantContext } from './../core/interfaces/tenant-context.interface';
 import { CreateUserDto } from './dtos/create-user.dto';
+import { InjectConnection } from '@nestjs/mongoose';
 
 @Injectable()
 export class UsersService {
@@ -10,8 +11,10 @@ export class UsersService {
     constructor(
         @Inject('TENANT_CONTEXT') readonly tenantContext: ITenantContext,
         @Inject('USER_MODEL') private userModel: Model<IUser>,
+        @InjectConnection() private readonly connection: Connection,
     ) {
-        Logger.debug(`Current tenant: ${this.tenantContext.id}`);
+        Logger.debug(`Current tenant: ${this.tenantContext.tenantId}`);
+        Logger.debug(this.connection.name);
     }
 
     /**

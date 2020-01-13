@@ -26,8 +26,8 @@ export function swaggerSetup(app: INestApplication) {
 
     const document = SwaggerModule.createDocument(app, options, {
         // Include only specified modules
-        include: [TenantsModule]
+        include: [TenantsModule],
     });
     // Setup swagger endpoint
-    SwaggerModule.setup('apidoc', app, document, customOptions);
+    SwaggerModule.setup('apidoc/admin', app, document, customOptions);
 }

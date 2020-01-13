@@ -74,6 +74,6 @@ export class TenantConnection {
      */
     private async createConnection(tenant: ITenant): Promise<Connection> {
         // Create or Return a mongo connection
-        return await mongoose.connect(`${tenant.uri}`, databaseConfig);
+        return await mongoose.createConnection(`${tenant.uri}`, databaseConfig);
     }
 }

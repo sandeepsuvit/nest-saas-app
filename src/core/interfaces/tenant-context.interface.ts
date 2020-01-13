@@ -6,5 +6,5 @@
  * @interface ITenantContext
  */
 export interface ITenantContext {
-    readonly id: string;
+    readonly tenantId: string;
 }
