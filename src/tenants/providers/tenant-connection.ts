@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as mongoose from 'mongoose';
 import { Connection } from 'mongoose';
-import { databaseConfig } from '../../config/database.config';
 import { ITenant } from '../../core/interfaces/tenant.interface';
 import { TenantsService } from '../tenants.service';
 
@@ -13,12 +13,12 @@ import { TenantsService } from '../tenants.service';
  */
 @Injectable()
 export class TenantConnection {
-    private readonly CONNECTION_NAME_PREFIX = process.env.TENANT_DB_PREFIX;
     // tslint:disable-next-line: variable-name
     private _tenantId: string;
 
     constructor(
         private tenantService: TenantsService,
+        private configService: ConfigService,
     ) {}
 
     /**
@@ -38,7 +38,6 @@ export class TenantConnection {
      * @memberof TenantConnection
      */
     async getConnection(): Connection {
-
         // Get the tenant details from the database
         const tenant = await this.tenantService.findByName(this._tenantId);
 
@@ -52,7 +51,7 @@ export class TenantConnection {
 
         // Find existing connection
         const foundConn = connections.find((con: Connection) => {
-            return con.name === `${this.CONNECTION_NAME_PREFIX}_${tenant.name}`;
+            return con.name === `${this.configService.get('tenant.dbPrefix')}_${tenant.name}`;
         });
 
         // Check if connection exist and is ready to execute
@@ -74,6 +73,6 @@ export class TenantConnection {
      */
     private async createConnection(tenant: ITenant): Promise<Connection> {
         // Create or Return a mongo connection
-        return await mongoose.createConnection(`${tenant.uri}`, databaseConfig);
+        return await mongoose.createConnection(`${tenant.uri}`, this.configService.get('tenant.dbOptions'));
     }
 }

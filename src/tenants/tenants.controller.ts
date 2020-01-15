@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiResponse, ApiUseTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateTenantDto } from './dtos/create-tenant.dto';
 import { TenantsService } from './tenants.service';
 
-@ApiUseTags('tenants')
+@ApiTags('tenants')
 @Controller('tenants')
 export class TenantsController {
     constructor(

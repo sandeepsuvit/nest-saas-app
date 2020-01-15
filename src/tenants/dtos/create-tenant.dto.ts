@@ -1,4 +1,3 @@
-import { ApiModelProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
 /**
@@ -8,11 +7,9 @@ import { IsNotEmpty } from 'class-validator';
  * @class CreateTenantDto
  */
 export class CreateTenantDto {
-    @ApiModelProperty()
     @IsNotEmpty()
     name: string;
 
-    @ApiModelProperty()
     @IsNotEmpty()
     uri: string;
 }

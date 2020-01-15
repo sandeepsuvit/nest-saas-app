@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerCustomOptions, SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { TenantsModule } from './tenants/tenants.module';
+import { TenantsModule } from '../tenants/tenants.module';
 
 /**
  * Configuration for Swagger
@@ -14,7 +14,6 @@ export function swaggerSetup(app: INestApplication) {
         .setTitle(process.env.API_DOC_TITLE)
         .setDescription(process.env.API_DOC_DESC)
         .setVersion(process.env.VERSION)
-        .setBasePath('/')
         // Register all controller tags heres
         .addTag('tenants', 'Tenant management endpoint')
         .build();

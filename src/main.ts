@@ -7,8 +7,8 @@ dotenvExpand(dotenv.config()); // Should always be at the top of base nest app i
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
-import { swaggerSetup } from './swagger.setup';
-import { swaggerTenantSetup } from './swagger-tenant.setup';
+import { swaggerSetup } from './swagger/swagger.setup';
+import { swaggerTenantSetup } from './swagger/swagger-tenant.setup';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,8 +17,6 @@ async function bootstrap() {
 
   // Swagger configuration
   swaggerSetup(app);
-
-  // Swagger configuration for tenants
   swaggerTenantSetup(app);
 
   await app.listen(3000);

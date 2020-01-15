@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { SwaggerCustomOptions, SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from '../users/users.module';
 
 /**
  * Configuration for Swagger
@@ -14,7 +14,6 @@ export function swaggerTenantSetup(app: INestApplication) {
         .setTitle(process.env.API_DOC_TITLE)
         .setDescription(process.env.API_DOC_DESC)
         .setVersion(process.env.VERSION)
-        .setBasePath('/')
         // Register all controller tags heres
         .addTag('users', 'User management endpoint')
         .build();
